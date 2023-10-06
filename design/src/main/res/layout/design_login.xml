@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="self"
+            type="com.github.kr328.clash.design.LoginDesign" />
+
+    </data>
+ <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:paddingStart="@{self.surface.insets.start}"
+     android:paddingEnd="@{self.surface.insets.end}"
+    android:background="#14193E"
+    android:fitsSystemWindows="true">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="370dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="125dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="欢迎回来，登录使用！"
+        android:textColor="@android:color/white"
+        android:textSize="30dp" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="343dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="194dp"
+        android:background="@drawable/text_background"
+        android:fontFamily="@font/inter_bold"
+        android:hint="请输入邮件"
+        android:nextFocusDown="@id/editText2"
+        android:paddingLeft="24dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="#999999"
+        android:textSize="16dp" />
+
+     <EditText
+         android:id="@+id/editText2"
+         android:layout_width="343dp"
+         android:layout_height="60dp"
+         android:layout_marginStart="16dp"
+         android:layout_marginTop="268dp"
+         android:background="@drawable/text_background"
+         android:fontFamily="@font/inter_bold"
+         android:drawableEnd="@drawable/hide_pass"
+         android:hint="请输入密码"
+         android:paddingLeft="24dp"
+         android:paddingRight="24dp"
+         android:textColor="@android:color/white"
+         android:textColorHint="#999999"
+         android:textSize="16dp" />
+     <TextView
+         android:layout_width="70dp"
+         android:layout_height="17dp"
+         android:layout_marginTop="348dp"
+         android:layout_marginLeft="289dp"
+         android:text="忘记密码?"
+         android:textColor="@android:color/white"
+         android:fontFamily="@font/inter"
+         android:textSize="14dp"/>
+     <Button
+         android:id="@+id/button"
+         android:layout_width="331dp"
+         android:layout_height="56dp"
+         android:layout_marginTop="392dp"
+         android:layout_marginLeft="22dp"
+         android:textColor="@android:color/white"
+         android:textSize="16dp"
+         android:textFontWeight="600"
+         android:fontFamily="@font/inter"
+         android:background="@drawable/button_background"
+         android:text="登录" />
+
+     <TextView
+         android:id="@+id/no_account"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="@{702 * }"
+         android:layout_marginLeft="114dp"
+         android:textSize="14dp"
+         android:textColor="@android:color/white"
+         android:text="还没有账号?"
+         />
+
+
+ </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

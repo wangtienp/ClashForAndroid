@@ -11,7 +11,6 @@ dependencies {
 
     ksp(libs.kaidl.compiler)
     ksp(libs.androidx.room.compiler)
-
     implementation(libs.kotlin.coroutine)
     implementation(libs.kotlin.serialization.json)
     implementation(libs.androidx.core)
