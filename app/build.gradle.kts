@@ -2,6 +2,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("com.android.application")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 dependencies {

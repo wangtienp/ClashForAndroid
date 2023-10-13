@@ -1,15 +1,14 @@
-package com.github.kr328.clash.common.constants
+package com.github.kr328.clash.common.util
 
-class AppStrings {
-    val token = "token"
-    val authData = "auth_data"
-    val userInfo = "USER_INFO"
-    val userSubscribe = "USER_SUBSCRIBE"
-    val serverNode = "SERVER_NODE"
-    val selectServer = "SELECT_SERVER"
-    val selectServerIndex = "SELECT_SERVER_INDEX"
-    val selectServerNode = "SELECT_SERVER_NODE"
-    val isFirstOpen = "IS_FIRST_OPEN"
-    val openDoor = "开启加速服务"
-    val crispWebsiteId = "b7b8fcd4-9857-42b7-a39d-51fb4930130d"
-}
+
+   const val token = "token"
+   const val authData = "auth_data"
+   const val userinfo = "USER_INFO"
+   const val usersubscribe = "USER_SUBSCRIBE"
+   const val serverNode = "SERVER_NODE"
+   const val selectServer = "SELECT_SERVER"
+   const val selectServerIndex = "SELECT_SERVER_INDEX"
+   const val selectServerNode = "SELECT_SERVER_NODE"
+   const val isFirstOpen = "IS_FIRST_OPEN"
+   const val openDoor = "开启加速服务"
+   const val crispWebsiteId = "b7b8fcd4-9857-42b7-a39d-51fb4930130d"

@@ -56,6 +56,8 @@ class MainActivity : BaseActivity<MainDesign>() {
                             startActivity(ProfilesActivity::class.intent)
                         MainDesign.Request.OpenProviders ->
                             startActivity(ProvidersActivity::class.intent)
+                        MainDesign.Request.OpenLogin ->
+                            startActivity(LoginActivity::class.intent)
                         MainDesign.Request.OpenLogs ->
                             startActivity(LogsActivity::class.intent)
                         MainDesign.Request.OpenSettings ->

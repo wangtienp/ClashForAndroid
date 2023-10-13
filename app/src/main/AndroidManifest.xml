@@ -41,7 +41,7 @@
             android:name=".MainActivity"
             android:configChanges="uiMode"
             android:exported="true"
-            android:label="@string/launch_name"
+            android:label="@string/mode"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,6 +76,11 @@
             android:exported="false"
             android:label="@string/application_broken" />
         <activity
+            android:name=".OTPSignupActivity"
+            android:configChanges="uiMode"
+            android:exported="true"
+            android:label="@string/launch_name" />
+        <activity
             android:name=".AppCrashedActivity"
             android:configChanges="uiMode"
             android:exported="false"
@@ -106,6 +111,16 @@
             android:configChanges="uiMode"
             android:exported="false"
             android:label="@string/providers" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="uiMode"
+            android:exported="false"
+            android:label="@string/login"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:configChanges="uiMode"
+            android:exported="false"
+            android:label="@string/login"/>
         <activity
             android:name=".LogsActivity"
             android:configChanges="uiMode"

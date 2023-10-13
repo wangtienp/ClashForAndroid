@@ -12,4 +12,5 @@
     <color name="color_error">#FFB00020</color>
     <color name="color_text_box">#20264F</color>
     <color name="color_button">#5557F5</color>
+    <color name="color_background">#14193E</color>
 </resources>

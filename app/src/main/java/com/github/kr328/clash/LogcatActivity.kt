@@ -122,6 +122,7 @@ class LogcatActivity : BaseActivity<LogcatDesign>() {
                         design.patchMessages(snapshot.messages, snapshot.removed, snapshot.appended)
 
                         initial = false
+
                     }
                 }
             }

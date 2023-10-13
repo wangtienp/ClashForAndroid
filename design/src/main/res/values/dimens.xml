@@ -81,4 +81,17 @@
     <!-- Logcat Design -->
     <dimen name="logcat_padding_vertical">12dp</dimen>
     <dimen name="logcat_padding_horizontal">12dp</dimen>
+
+    <!--  Button Design -->
+    <dimen name="button_width">331dp</dimen>
+    <dimen name="button_height">60dp</dimen>
+    <!-- Textbox Design  -->
+    <dimen name="textbox_width">343dp</dimen>
+    <dimen name="textbox_height">60dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="header_text_size">30dp</dimen>
+    <dimen name="normal_text_size">16dp</dimen>
+    <dimen name="otp_text_size">22dp</dimen>
+    <dimen name="small_text_size">14dp</dimen>
 </resources>

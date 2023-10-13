@@ -1,24 +1,39 @@
 package com.github.kr328.clash
 
-import android.os.Build
-import android.util.DisplayMetrics
-import androidx.annotation.RequiresApi
+import android.widget.EditText
+import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.design.LoginDesign
-@Suppress("DEPRECATION")
-class LoginActivity : BaseActivity<LoginDesign>(){
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.selects.select
 
-    @RequiresApi(Build.VERSION_CODES.R)
+class LoginActivity : BaseActivity<LoginDesign>(){
     override suspend fun main() {
         val design = LoginDesign(this)
         setContentDesign(design)
+        findViewById<EditText>(R.id.password)
+    while (isActive)
+        select<Unit> {
+            events.onReceive{
 
-        val baseHeight = 812
-        val baseWidth = 375
-        val displayMetrics = DisplayMetrics()
-        var realHeight = displayMetrics.heightPixels
-        var realWidth = displayMetrics.widthPixels
-        var femHeight = realHeight/baseHeight
-        var femWidth = realWidth/baseWidth
+            }
+            design.requests.onReceive{
+                when(it){
+                    LoginDesign.Request.OpenRegister->{
+                        startActivity(RegisterActivity::class.intent)
+                        finish()
+                    }
+                    LoginDesign.Request.OpenForget->
+                        startActivity(SettingsActivity::class.intent)
+                    LoginDesign.Request.Login->
+                        startActivity(SettingsActivity::class.intent)
+                    LoginDesign.Request.GoBack->
+                        finish()
+                    LoginDesign.Request.TogglePassword->
+                        design.togglePassword()
+
+                }
+            }
+        }
     }
 
 }

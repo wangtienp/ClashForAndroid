@@ -1,6 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="self"
+            type="com.github.kr328.clash.design.RegisterDesign" />
+        <import type="com.github.kr328.clash.design.RegisterDesign.Request"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/color_background">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="370dp"
+            android:clickable="true"
+            android:onClick= "@{()->self.requests.offer(Request.GoBack)}"
+            android:src="@drawable/arrow" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="125dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="欢迎注册，开始使用！"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/header_text_size" />
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="@dimen/textbox_width"
+            android:layout_height="@dimen/textbox_height"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="194dp"
+            android:background="@drawable/text_background"
+            android:fontFamily="@font/inter_bold"
+            android:singleLine="true"
+            android:hint="请输入用户名"
+            android:paddingLeft="24dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#999999"
+            android:textSize="16dp" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="@dimen/textbox_width"
+            android:layout_height="@dimen/textbox_height"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="268dp"
+            android:background="@drawable/text_background"
+            android:fontFamily="@font/inter_bold"
+            android:singleLine="true"
+            android:hint="请输入电子邮件"
+            android:paddingLeft="24dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#999999"
+            android:textSize="16dp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="@dimen/textbox_width"
+                android:layout_height="@dimen/textbox_height"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="342dp"
+                android:background="@drawable/text_background"
+                android:fontFamily="@font/inter_bold"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:paddingLeft="24dp"
+                android:paddingRight="48dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="#999999"
+                android:textSize="16dp" />
+            <ImageView
+                android:id="@+id/toggle_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="311dp"
+                android:layout_marginTop="362dp"
+                android:clickable="true"
+                android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
+                android:src="@drawable/hide_pass" />
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="@dimen/textbox_width"
+                android:layout_height="@dimen/textbox_height"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="416dp"
+                android:background="@drawable/text_background"
+                android:fontFamily="@font/inter_bold"
+                android:hint="请再次输入密码"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:paddingLeft="24dp"
+                android:paddingRight="48dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="#999999"
+                android:textSize="16dp" />
+            <ImageView
+                android:id="@+id/toggle_confirm_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="311dp"
+                android:layout_marginTop="436dp"
+                android:clickable="true"
+                android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
+                android:src="@drawable/hide_pass" />
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="540dp"
+            android:layout_marginLeft="22dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/normal_text_size"
+            android:textFontWeight="600"
+            android:onClick="@{()->self.requests.offer(Request.Register)}"
+            android:fontFamily="@font/inter"
+            android:background="@drawable/button_background"
+            android:text="注册" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="114dp"
+            android:layout_marginTop="680dp"
+            android:text="已经有账号？"
+            android:textColor="@android:color/white"
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/no_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="680dp"
+            android:clickable="true"
+            android:onClick="@{()->self.requests.offer(Request.OpenLogin)}"
+            android:text="现在登录"
+            android:textColor="@color/color_button"
+            android:textSize="@dimen/small_text_size" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

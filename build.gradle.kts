@@ -10,6 +10,7 @@ buildscript {
         mavenCentral()
         google()
         maven("https://maven.kr328.app/releases")
+        maven( "https://jitpack.io")
     }
     dependencies {
         classpath(libs.build.android)
@@ -17,6 +18,8 @@ buildscript {
         classpath(libs.build.kotlin.serialization)
         classpath(libs.build.ksp)
         classpath(libs.build.golang)
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.5.21")
+
     }
 }
 
