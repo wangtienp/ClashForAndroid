@@ -3,6 +3,7 @@ package com.github.kr328.clash.design
 import android.content.Context
 import android.text.InputType
 import android.view.View
+import com.github.kr328.clash.common.dataclass.LoginModel
 import com.github.kr328.clash.core.bridge.CallForRetro
 import com.github.kr328.clash.core.bridge.retrofit
 import com.github.kr328.clash.design.databinding.DesignLoginBinding
@@ -46,15 +47,20 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
         })
     }
 
-    fun login(){
+   fun login(){
         binding.login.setOnClickListener(View.OnClickListener {
             if(binding.email.text.isEmpty()){
                 binding.email.error ="Please fill in email"
+                binding.email.requestFocus()
+                return@OnClickListener
             }else if(binding.password.text.isEmpty()){
                 binding.password.error="Please fill in password"
-            }else{
-                retrofit.create(CallForRetro::class.java)
+                binding.password.requestFocus()
+                return@OnClickListener
             }
+
+
+
         })
     }
 
