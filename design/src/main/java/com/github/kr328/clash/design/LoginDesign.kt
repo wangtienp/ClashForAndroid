@@ -1,14 +1,16 @@
 package com.github.kr328.clash.design
 
+
 import android.content.Context
 import android.text.InputType
 import android.view.View
-import com.github.kr328.clash.common.dataclass.LoginModel
-import com.github.kr328.clash.core.bridge.CallForRetro
-import com.github.kr328.clash.core.bridge.retrofit
+import com.github.kr328.clash.core.entity.LoginEntity
 import com.github.kr328.clash.design.databinding.DesignLoginBinding
 import com.github.kr328.clash.design.util.layoutInflater
 import com.github.kr328.clash.design.util.root
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
@@ -47,24 +49,28 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
         })
     }
 
-   fun login(){
-        binding.login.setOnClickListener(View.OnClickListener {
-            if(binding.email.text.isEmpty()){
-                binding.email.error ="Please fill in email"
-                binding.email.requestFocus()
-                return@OnClickListener
-            }else if(binding.password.text.isEmpty()){
-                binding.password.error="Please fill in password"
-                binding.password.requestFocus()
-                return@OnClickListener
-            }
+  suspend fun login(){
+      withContext(Dispatchers.Main){
+          binding.login.setOnClickListener(
+              View.OnClickListener {
+                  if(binding.email.text.isEmpty()){
+                  binding.email.error ="Please fill in email"
+                  binding.email.requestFocus()
+                  return@OnClickListener
+              }else if(binding.password.text.isEmpty()){
+                  binding.password.error="Please fill in password"
+                  binding.password.requestFocus()
+                  return@OnClickListener}
+
+                  val email = binding.email.text.toString()
+                  val password = binding.password.text.toString()
+                  launch(Dispatchers.IO) {
+                      LoginEntity().LoginRequest(email, password)
+                  }
 
 
-
-        })
-    }
-
-
-
+          })
+      }
+  }
 
 }

@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":service"))
 
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
     implementation(libs.kotlin.coroutine)
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
@@ -19,5 +20,6 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.viewpager)
     implementation(libs.google.material)
+    implementation(libs.kotlin.serialization.json)
 
 }

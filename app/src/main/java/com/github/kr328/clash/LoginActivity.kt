@@ -25,7 +25,7 @@ class LoginActivity : BaseActivity<LoginDesign>(){
                     LoginDesign.Request.OpenForget->
                         startActivity(SettingsActivity::class.intent)
                     LoginDesign.Request.Login->
-                        startActivity(SettingsActivity::class.intent)
+                        design.login()
                     LoginDesign.Request.GoBack->
                         finish()
                     LoginDesign.Request.TogglePassword->
