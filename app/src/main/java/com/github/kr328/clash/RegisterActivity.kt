@@ -1,6 +1,7 @@
 package com.github.kr328.clash
 
 import com.github.kr328.clash.common.util.intent
+import com.github.kr328.clash.design.LoginDesign
 import com.github.kr328.clash.design.RegisterDesign
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.selects.select
@@ -26,8 +27,11 @@ class RegisterActivity:BaseActivity<RegisterDesign>() {
                             startActivity(LoginActivity::class.intent)
                             finish()
                         }
+                        RegisterDesign.Request.TogglePasswordConfirm->{
+                            design.togglePasswordConfirm()
+                        }
                         RegisterDesign.Request.TogglePassword->
-                            startActivity(SettingsActivity::class.intent)
+                            design.togglePassword()
                     }
                 }
             }

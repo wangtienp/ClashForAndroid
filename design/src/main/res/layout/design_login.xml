@@ -14,6 +14,8 @@
  <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="@{self.surface.insets.start}"
+    android:paddingEnd="@{self.surface.insets.end}"
     android:background="@color/color_background"
     android:fitsSystemWindows="true">
      <ImageView
@@ -23,7 +25,7 @@
          android:layout_marginStart="17dp"
          android:layout_marginTop="60dp"
          android:layout_marginEnd="370dp"
-         android:clickable="true"
+
          android:onClick="@{()->self.requests.offer(Request.GoBack)}"
          android:src="@drawable/arrow" />
     <TextView
@@ -45,6 +47,7 @@
         android:background="@drawable/text_background"
         android:fontFamily="@font/inter_bold"
         android:singleLine="true"
+        android:focusable="true"
         android:hint="请输入电子邮件"
         android:nextFocusDown="@id/password"
         android:paddingLeft="24dp"
@@ -64,6 +67,7 @@
              android:background="@drawable/text_background"
              android:fontFamily="@font/inter_bold"
              android:hint="请输入密码"
+             android:focusable="true"
              android:inputType="textPassword"
              android:singleLine="true"
              android:paddingLeft="24dp"
@@ -77,7 +81,7 @@
              android:layout_height="wrap_content"
              android:layout_marginStart="311dp"
              android:layout_marginTop="288dp"
-             android:clickable="true"
+
              android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
              android:src="@{Toggle ? @drawable/hide_pass : @drawable/show_pass }" />
 
@@ -93,7 +97,8 @@
          android:text="忘记密码?"
          android:textColor="@android:color/white"
          android:fontFamily="@font/inter"
-         android:textSize="@dimen/small_text_size"/>
+         android:textSize="@dimen/small_text_size"
+         android:focusable="true" />
      <androidx.appcompat.widget.AppCompatButton
          android:id="@+id/login"
          android:layout_width="@dimen/button_width"
@@ -108,7 +113,8 @@
          android:onClick="@{()->self.requests.offer(Request.Login)}"
          android:fontFamily="@font/inter"
          android:background="@drawable/button_background"
-         android:text="登录" />
+         android:text="登录"
+         android:focusable="true" />
 
      <TextView
          android:layout_width="wrap_content"

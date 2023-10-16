@@ -11,6 +11,7 @@ import com.github.kr328.clash.design.util.root
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 
 class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
@@ -35,7 +36,7 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
         binding.toggle = true
     }
      fun togglePassword(){
-        binding.togglePassword.setOnClickListener(View.OnClickListener {
+
             if(binding.toggle== true){
                 binding.toggle = false
                 binding.password.inputType = 1
@@ -46,31 +47,30 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
                 binding.password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 println("binding.toggle: ${binding.toggle}")
             }
-        })
+
     }
 
   suspend fun login(){
-      withContext(Dispatchers.Main){
-          binding.login.setOnClickListener(
-              View.OnClickListener {
                   if(binding.email.text.isEmpty()){
-                  binding.email.error ="Please fill in email"
-                  binding.email.requestFocus()
-                  return@OnClickListener
-              }else if(binding.password.text.isEmpty()){
-                  binding.password.error="Please fill in password"
-                  binding.password.requestFocus()
-                  return@OnClickListener}
+                      binding.email.error ="请输入电子邮箱"
+                      binding.email.requestFocus()
+
+                  }else if(binding.password.text.isEmpty()){
+                      binding.password.error="请输入密码"
+                      binding.password.requestFocus()
+                      }
 
                   val email = binding.email.text.toString()
                   val password = binding.password.text.toString()
                   launch(Dispatchers.IO) {
-                      LoginEntity().LoginRequest(email, password)
+                      try {
+                          LoginEntity().LoginRequest(email, password)
+                      }catch (e:IOException){
+                          println("An error occurred")
+                      }
                   }
 
-
-          })
-      }
   }
-
 }
+
+

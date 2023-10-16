@@ -22,6 +22,9 @@ class OTPSignupActivity:BaseActivity<OTPDesignSignup>(){
                             startActivity(SettingsActivity::class.intent)
                         OTPDesignSignup.Request.Resend ->
                             startActivity(SettingsActivity::class.intent)
+                        OTPDesignSignup.Request.Setup ->{
+                            design.setupOtp()
+                        }
                     }
                 }
             }

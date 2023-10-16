@@ -4,6 +4,12 @@
         <variable
             name="self"
             type="com.github.kr328.clash.design.RegisterDesign" />
+        <variable
+            name="Toggle"
+            type="Boolean" />
+        <variable
+            name="ToggleConfirm"
+            type="Boolean" />
         <import type="com.github.kr328.clash.design.RegisterDesign.Request"/>
 
     </data>
@@ -19,7 +25,6 @@
             android:layout_height="24dp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="60dp"
-            android:layout_marginEnd="370dp"
             android:clickable="true"
             android:onClick= "@{()->self.requests.offer(Request.GoBack)}"
             android:src="@drawable/arrow" />
@@ -34,25 +39,11 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/header_text_size" />
         <EditText
-            android:id="@+id/username"
-            android:layout_width="@dimen/textbox_width"
-            android:layout_height="@dimen/textbox_height"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="194dp"
-            android:background="@drawable/text_background"
-            android:fontFamily="@font/inter_bold"
-            android:singleLine="true"
-            android:hint="请输入用户名"
-            android:paddingLeft="24dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="#999999"
-            android:textSize="16dp" />
-        <EditText
             android:id="@+id/email"
             android:layout_width="@dimen/textbox_width"
             android:layout_height="@dimen/textbox_height"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="268dp"
+            android:layout_marginTop="194dp"
             android:background="@drawable/text_background"
             android:fontFamily="@font/inter_bold"
             android:singleLine="true"
@@ -69,7 +60,7 @@
                 android:layout_width="@dimen/textbox_width"
                 android:layout_height="@dimen/textbox_height"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="342dp"
+                android:layout_marginTop="268dp"
                 android:background="@drawable/text_background"
                 android:fontFamily="@font/inter_bold"
                 android:hint="请输入密码"
@@ -85,10 +76,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="311dp"
-                android:layout_marginTop="362dp"
+                android:layout_marginTop="288dp"
                 android:clickable="true"
                 android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
-                android:src="@drawable/hide_pass" />
+                android:src="@{Toggle ? @drawable/hide_pass : @drawable/show_pass }" />
 
         </FrameLayout>
         <FrameLayout
@@ -99,7 +90,7 @@
                 android:layout_width="@dimen/textbox_width"
                 android:layout_height="@dimen/textbox_height"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="416dp"
+                android:layout_marginTop="342dp"
                 android:background="@drawable/text_background"
                 android:fontFamily="@font/inter_bold"
                 android:hint="请再次输入密码"
@@ -115,10 +106,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="311dp"
-                android:layout_marginTop="436dp"
+                android:layout_marginTop="362dp"
                 android:clickable="true"
-                android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
-                android:src="@drawable/hide_pass" />
+                android:onClick="@{()->self.requests.offer(Request.TogglePasswordConfirm)}"
+                android:src="@{ToggleConfirm ? @drawable/hide_pass : @drawable/show_pass }" />
 
         </FrameLayout>
 
