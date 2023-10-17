@@ -23,7 +23,7 @@ class OTPSignupActivity:BaseActivity<OTPDesignSignup>(){
                         OTPDesignSignup.Request.Verify ->
                             design.verify()
                         OTPDesignSignup.Request.Resend ->
-                            startActivity(SettingsActivity::class.intent)
+                            design.resendOtp()
                         OTPDesignSignup.Request.Setup ->{
                             design.setupOtp()
                         }

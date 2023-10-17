@@ -1,6 +1,7 @@
 package com.github.kr328.clash.design
 
 import android.content.Context
+import android.graphics.Color
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
@@ -44,6 +45,7 @@ class OTPDesignSignup(context: Context) : Design<OTPDesignSignup.Request>(contex
     private var editTextValue = MutableLiveData<String>()
     private var editTextValueList = Array(6){""}
     private var totalTimesInMillis:Long = 60000
+    private var timeLeftInSeconds:Long = 0
    fun onEditText(index: Int,newText:CharSequence){
        val text = newText.toString()
 
@@ -77,9 +79,21 @@ class OTPDesignSignup(context: Context) : Design<OTPDesignSignup.Request>(contex
     }
 
     fun resendOtp(){
-        countDownTimer = object:CountDownTimer(totalTimesInMillis,1000){
+         object : CountDownTimer(totalTimesInMillis, 1000) {
 
-        }
+            override fun onTick(millisUntilFinished: Long) {
+                timeLeftInSeconds = millisUntilFinished/1000
+                binding.resendOtp.setText("請在$timeLeftInSeconds 秒內重試")
+                binding.resendOtp.isClickable = false
+                binding.resendOtp.setTextColor(Color.GRAY)
+            }
+
+            override fun onFinish() {
+                binding.resendOtp.setText("再次發送")
+                binding.resendOtp.isClickable = true
+                binding.resendOtp.setTextColor(Color.parseColor("#5557F5"))
+            }
+        }.start()
     }
     fun request(request: OTPDesignSignup.Request) {
         requests.trySend(request)
