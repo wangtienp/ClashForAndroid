@@ -11,7 +11,6 @@ class RegisterActivity:BaseActivity<RegisterDesign>() {
         val design = RegisterDesign(this)
         setContentDesign(design)
 
-        R.layout.design_register
         while (isActive){
             select<Unit> {
                 events.onReceive{

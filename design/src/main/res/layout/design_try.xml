@@ -2,12 +2,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#14193E"> <!-- Set the background color here -->
+    android:background="#181a35"> <!-- Set the background color here -->
+    <ImageView
+        android:layout_width="133dp"
+        android:layout_height="133dp"
+        android:src="@drawable/ellipseupright"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="-50dp"
+        android:elevation="2dp"/>
+
+    <ImageView
+        android:layout_width="238dp"
+        android:layout_height="238dp"
+        android:src="@drawable/ellipseleftdown"
+        android:layout_marginTop="78dp"
+        android:layout_marginLeft="220dp"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/homepage"
-        android:scaleType="fitEnd" />
+        android:scaleType="fitEnd"
+        android:src="@drawable/homepage" />
+
 
 </FrameLayout>

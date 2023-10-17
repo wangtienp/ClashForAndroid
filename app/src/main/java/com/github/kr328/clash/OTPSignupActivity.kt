@@ -1,7 +1,9 @@
 package com.github.kr328.clash
 
+import androidx.databinding.DataBindingUtil
 import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.design.OTPDesignSignup
+import com.github.kr328.clash.design.databinding.DesignOtpSignupBinding
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.selects.select
 
@@ -19,11 +21,14 @@ class OTPSignupActivity:BaseActivity<OTPDesignSignup>(){
                         OTPDesignSignup.Request.GoBack->
                             finish()
                         OTPDesignSignup.Request.Verify ->
-                            startActivity(SettingsActivity::class.intent)
+                            design.verify()
                         OTPDesignSignup.Request.Resend ->
                             startActivity(SettingsActivity::class.intent)
                         OTPDesignSignup.Request.Setup ->{
                             design.setupOtp()
+                        }
+                        OTPDesignSignup.Request.SetupBackward ->{
+                            design.setupOtpBackward()
                         }
                     }
                 }

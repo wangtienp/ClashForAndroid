@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="false">
+        <layer-list>
+            <item android:drawable="@drawable/border_unfocused" />
+        </layer-list>
+    </item>
+
+    <!-- Focused state -->
+    <item android:state_focused="true">
+        <layer-list>
+            <item android:drawable="@drawable/border_focused" />
+        </layer-list>
+    </item>
+</selector>
