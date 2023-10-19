@@ -5,6 +5,7 @@ import com.github.kr328.clash.common.log.Log
 import com.github.kr328.clash.common.util.login
 import com.github.kr328.clash.common.util.register
 import com.github.kr328.clash.core.model.post
+import com.google.gson.JsonParser
 import java.io.IOException
 
 class RegisterEntity {
@@ -21,11 +22,15 @@ class RegisterEntity {
         try {
             val response = post(url, body)
             val statusCode = response.code
-            val responseBody = response.responseBody
-            if (statusCode == 200 ||statusCode == 201){
-                println("login successful")
-                Log.d("success")
-            }else{
+            val responseBody = response.responseBody as String
+            val parser = JsonParser()
+            val jsonObject = parser.parse(responseBody).asJsonObject
+            if(statusCode == 200 || statusCode ==201){
+                println("register successful")
+                val dataObject = jsonObject.getAsJsonObject("data")
+
+            }
+            else{
                 println("login failed with status code: ")
                 Log.d("failed with $statusCode")
             }

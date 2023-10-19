@@ -21,5 +21,6 @@ dependencies {
     implementation(libs.androidx.viewpager)
     implementation(libs.google.material)
     implementation(libs.kotlin.serialization.json)
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
 }

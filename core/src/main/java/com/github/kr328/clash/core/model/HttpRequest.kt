@@ -58,16 +58,11 @@ suspend fun get(url: String):Map<String,Any>?{
     return withContext(Dispatchers.IO){
         try {
             val response = client.newCall(request).execute()
-            println("Retrieving data")
-            if (response.code==200){
-                println("Success")
                 val responseBody = response.body?.string()
                 val type = object :TypeToken<Map<String,Any>>(){}.type
                 val responseData:Map<String,Any>? = gson.fromJson(responseBody,type)
                 responseData
-            }else{
-                null
-            }
+
         }catch (e:IOException){
             null
         }

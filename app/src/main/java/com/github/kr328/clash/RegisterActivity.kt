@@ -1,6 +1,7 @@
 package com.github.kr328.clash
 
 import com.github.kr328.clash.common.util.intent
+import com.github.kr328.clash.common.util.register
 import com.github.kr328.clash.design.LoginDesign
 import com.github.kr328.clash.design.RegisterDesign
 import kotlinx.coroutines.isActive
@@ -18,8 +19,14 @@ class RegisterActivity:BaseActivity<RegisterDesign>() {
                 }
                 design.requests.onReceive{
                     when(it){
-                        RegisterDesign.Request.Register->
-                            startActivity(OTPSignupActivity::class.intent)
+                        RegisterDesign.Request.Register->{
+                            val passOrNot =design.register()
+                            if(passOrNot == 1){
+                                startActivity(OTPSignupActivity::class.intent)
+                            }
+
+                        }
+
                         RegisterDesign.Request.GoBack->
                             finish()
                         RegisterDesign.Request.OpenLogin->{
@@ -31,6 +38,10 @@ class RegisterActivity:BaseActivity<RegisterDesign>() {
                         }
                         RegisterDesign.Request.TogglePassword->
                             design.togglePassword()
+                        RegisterDesign.Request.Unfocused->{
+                            design.hideOrShowKeyboard()
+                        }
+
                     }
                 }
             }
