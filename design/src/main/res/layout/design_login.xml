@@ -18,6 +18,12 @@
     android:paddingEnd="@{self.surface.insets.end}"
     android:background="@color/color_background"
     android:fitsSystemWindows="true">
+     <FrameLayout
+         android:id="@+id/parent_layout2"
+         android:onClick="@{()->self.requests.offer(Request.Unfocused)}"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         >
      <ImageView
          android:id="@+id/back_button"
          android:layout_width="24dp"
@@ -44,7 +50,7 @@
         android:layout_height="@dimen/textbox_height"
         android:layout_marginStart="16dp"
         android:layout_marginTop="194dp"
-        android:background="@drawable/text_background"
+        android:background="@drawable/edittext_border"
         android:fontFamily="@font/inter_bold"
         android:singleLine="true"
         android:focusable="true"
@@ -55,16 +61,14 @@
         android:textColorHint="#999999"
         android:textSize="16dp" />
 
-     <FrameLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
+
          <EditText
              android:id="@+id/password"
              android:layout_width="@dimen/textbox_width"
              android:layout_height="@dimen/textbox_height"
              android:layout_marginStart="16dp"
              android:layout_marginTop="268dp"
-             android:background="@drawable/text_background"
+             android:background="@drawable/edittext_border"
              android:fontFamily="@font/inter_bold"
              android:hint="请输入密码"
              android:focusable="true"
@@ -85,7 +89,7 @@
              android:onClick="@{()->self.requests.offer(Request.TogglePassword)}"
              android:src="@{Toggle ? @drawable/hide_pass : @drawable/show_pass }" />
 
-     </FrameLayout>
+
      <TextView
          android:id="@+id/forget_pass"
          android:layout_width="70dp"
@@ -115,6 +119,7 @@
          android:background="@drawable/button_background"
          android:text="登录"
          android:focusable="true" />
+     </FrameLayout>
 
      <TextView
          android:layout_width="wrap_content"

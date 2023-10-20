@@ -1,7 +1,9 @@
 package com.github.kr328.clash
 
+import android.content.Context
 import androidx.databinding.DataBindingUtil
 import com.github.kr328.clash.common.util.intent
+import com.github.kr328.clash.common.util.timeEnd
 import com.github.kr328.clash.design.OTPDesignSignup
 import com.github.kr328.clash.design.databinding.DesignOtpSignupBinding
 import kotlinx.coroutines.isActive
@@ -18,8 +20,10 @@ class OTPSignupActivity:BaseActivity<OTPDesignSignup>(){
                 }
                 design.requests.onReceive{
                     when(it){
-                        OTPDesignSignup.Request.GoBack->
+                        OTPDesignSignup.Request.GoBack->{
+                            design.onBackClicked()
                             finish()
+                        }
                         OTPDesignSignup.Request.Verify ->
                             design.verify()
                         OTPDesignSignup.Request.Resend ->
@@ -33,5 +37,17 @@ class OTPSignupActivity:BaseActivity<OTPDesignSignup>(){
                     }
                 }
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("onDestroy()")
+        var estimatedEndTime = System.currentTimeMillis() +60000
+        println(estimatedEndTime)
+        val sharedPreferences = getSharedPreferences("isCountDown",Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putLong(timeEnd,estimatedEndTime)
+
+        editor.apply()
     }
 }

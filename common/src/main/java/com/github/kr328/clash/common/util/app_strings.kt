@@ -12,3 +12,5 @@ package com.github.kr328.clash.common.util
    const val isFirstOpen = "IS_FIRST_OPEN"
    const val openDoor = "开启加速服务"
    const val crispWebsiteId = "b7b8fcd4-9857-42b7-a39d-51fb4930130d"
+   const val timeEnd = "TIME_END"
+

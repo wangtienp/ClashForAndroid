@@ -4,6 +4,8 @@ package com.github.kr328.clash.design
 import android.content.Context
 import android.text.InputType
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import com.github.kr328.clash.core.entity.LoginEntity
 import com.github.kr328.clash.design.databinding.DesignLoginBinding
 import com.github.kr328.clash.design.ui.ToastDuration
@@ -25,7 +27,8 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
         GoBack,
         OpenForget,
         OpenRegister,
-        Login
+        Login,
+        Unfocused
     }
 
     private val binding = DesignLoginBinding
@@ -51,6 +54,32 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
 
             }
 
+    }
+    private fun showSoftKeyboard(context: Context, editText: EditText) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
+    }
+
+    private fun hideSoftKeyboard(context: Context, view: View) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+    fun  hideOrShowKeyboard(){
+        val editText1 = binding.email
+        val editText2 = binding.password
+
+
+
+        hideSoftKeyboard(this.context,editText1)
+        hideSoftKeyboard(this.context,editText2)
+
+
+        editText1.setOnClickListener {
+            showSoftKeyboard(this.context, editText1)
+        }
+        editText2.setOnClickListener {
+            showSoftKeyboard(this.context, editText2)
+        }
     }
 
   suspend fun login(){
@@ -78,7 +107,7 @@ class LoginDesign(context: Context) : Design<LoginDesign.Request>(context) {
                                       }
                                       500 -> {
                                           val message = jsonObject.get("message").asString
-                                          println(message)
+                                          showToast(message,ToastDuration.Short)
                                       }
                                       else ->{
                                           val errors = jsonObject.get("errors").asJsonObject

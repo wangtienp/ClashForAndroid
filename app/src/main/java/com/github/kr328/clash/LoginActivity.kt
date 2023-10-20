@@ -30,6 +30,9 @@ class LoginActivity : BaseActivity<LoginDesign>(){
                         finish()
                     LoginDesign.Request.TogglePassword->
                         design.togglePassword()
+                    LoginDesign.Request.Unfocused->{
+                        design.hideOrShowKeyboard()
+                    }
 
                 }
             }

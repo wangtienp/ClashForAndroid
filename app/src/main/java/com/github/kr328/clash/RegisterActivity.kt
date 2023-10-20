@@ -1,5 +1,6 @@
 package com.github.kr328.clash
 
+import android.widget.Toast
 import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.common.util.register
 import com.github.kr328.clash.design.LoginDesign
@@ -20,9 +21,12 @@ class RegisterActivity:BaseActivity<RegisterDesign>() {
                 design.requests.onReceive{
                     when(it){
                         RegisterDesign.Request.Register->{
-                            val passOrNot =design.register()
-                            if(passOrNot == 1){
+                            val pass =design.register()
+                            if(pass){
                                 startActivity(OTPSignupActivity::class.intent)
+                                Toast.makeText(this@RegisterActivity.applicationContext,"验证码发送成功\n" +
+                                        "如果没有收到验证码请检查垃圾箱。",Toast.LENGTH_LONG).show()
+
                             }
 
                         }

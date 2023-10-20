@@ -1,5 +1,6 @@
 package com.github.kr328.clash
 
+import android.content.Context
 import androidx.activity.result.contract.ActivityResultContracts
 import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.common.util.ticker
@@ -76,7 +77,14 @@ class MainActivity : BaseActivity<MainDesign>() {
             }
         }
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        println("onDestroy()")
+        val sharedPreferences = getSharedPreferences("isCountDown", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("myCountDown")
+        editor.apply()
+    }
     private suspend fun showUpdatedTips(design: MainDesign) {
         val tips = TipsStore(this)
 

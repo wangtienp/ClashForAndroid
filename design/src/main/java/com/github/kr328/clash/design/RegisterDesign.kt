@@ -1,17 +1,18 @@
 package com.github.kr328.clash.design
 
 import android.content.Context
-import android.content.Intent
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import com.github.kr328.clash.core.entity.RegisterEntity
 import com.github.kr328.clash.design.databinding.DesignRegisterBinding
 import com.github.kr328.clash.design.ui.ToastDuration
 import com.github.kr328.clash.design.util.layoutInflater
 import com.github.kr328.clash.design.util.root
+import com.google.gson.JsonParser
 
 class RegisterDesign (context: Context) : Design<RegisterDesign.Request>(context){
     enum class Request{
@@ -32,6 +33,7 @@ class RegisterDesign (context: Context) : Design<RegisterDesign.Request>(context
         binding.self = this
         binding.toggle=true
         binding.toggleConfirm=true
+        //后缀列表
         val emailList = arrayOf("@gmail.com","@qq.com","@yahoo.com",
             "@163.com","@sina.com","@126.com","@outlook.com","@yeah.net","@foxmail.com")
 
@@ -76,25 +78,46 @@ class RegisterDesign (context: Context) : Design<RegisterDesign.Request>(context
     }
 
 
-   suspend fun register():Int{
+   suspend fun register():Boolean{
+       emailCompleted = binding.email.text.toString() + emailAlias
        if(binding.email.text.isEmpty()){
            showToast("邮箱格式不正确",ToastDuration.Short)
-           return 0
+           return false
        }
-        if (binding.password.text.isEmpty()||binding.confirmPassword.text.isEmpty()){
+       else if (binding.password.text.isEmpty()||binding.confirmPassword.text.isEmpty()){
             showToast("密码不能为空",ToastDuration.Short)
-            return 0
+            return false
         }else if (binding.password.text.length<8||binding.confirmPassword.text.length<8){
             showToast("密码必须大于 8 个字符",ToastDuration.Short)
-            return 0
-        }else if(!binding.password.text.equals(binding.confirmPassword.text)){
-            showToast("密码必须一致",ToastDuration.Short)
-            return 0
+            return false
+        }else if(binding.password.text.toString()!=binding.confirmPassword.text.toString()){
+            showToast("两次密码输入不一样",ToastDuration.Short)
+            return false
         }
-        emailCompleted = binding.email.text.toString() + emailAlias
-       return 1
+            val registerResponse = RegisterEntity().verifyEmail(emailCompleted)
+            println(registerResponse)
 
-    }
+                val status = registerResponse?.get("status") as Int
+                val responseData = registerResponse["response"]
+                val responseDataString = responseData.toString()
+                val jsonObject = JsonParser().parse(responseDataString).asJsonObject
+               return when(status){
+                    200, 201 -> {
+                        return jsonObject.get("data").asBoolean
+                    }
+                    500 ->{
+//                        val message = jsonObject.get("message").asString
+//                        showToast(message,ToastDuration.Short)
+                        return true
+                    }422 -> {
+                    showToast("邮箱格式不正确",ToastDuration.Short)
+                    return false
+                    }else ->{
+                       showToast("未知错误",ToastDuration.Short)
+                        false
+                    }
+                }
+            }
 
 
 
